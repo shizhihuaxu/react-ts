@@ -1,0 +1,4 @@
+/node_modules
+/public
+/src/**/*.scss.d.ts
+.vscode
