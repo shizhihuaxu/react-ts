@@ -1,0 +1,42 @@
+.list {
+	color: #000;
+	background: #fafafa;
+}
+
+.category {
+	display: flex;
+}
+
+.type {
+	padding: 0 40px;
+	flex: 1;
+}
+
+.categoryName,
+.type {
+	display: inline-block;
+	@include height-lh(48px);
+}
+
+.categoryName {
+	width: 120px;
+	text-align: center;
+	background: #f5f5f5;
+}
+
+.typeName {
+	cursor: pointer;
+
+	&:not(:first-child) {
+		margin-left: 24px;
+	}
+
+	&.active {
+		border-radius: 4px;
+		background-color: #b7cae9;
+	}
+}
+
+.testConflict {
+	background-color: pink;
+}

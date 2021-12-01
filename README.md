@@ -88,7 +88,32 @@
    - 组件文件夹名称均使用大驼峰式命名，组件文件夹由组件内容 `index.tsx` 和组件样式 `index.scss` 两部分组成；
    - 
 
-4.  配置代码格式化插件 prettier，首先需要在扩展里安装此插件
+4. 配置代码格式化插件 prettier，首先需要在扩展里安装此插件
+
+   ```
+   module.exports = {
+     printWidth: 80, //单行长度
+     tabWidth: 2, //缩进长度
+     useTabs: false, //使用空格代替tab缩进
+     semi: true, //句末使用分号
+     singleQuote: true, //使用单引号
+     quoteProps: 'as-needed', //仅在必需时为对象的key添加引号
+     jsxSingleQuote: true, // jsx中使用单引号
+     trailingComma: 'all', //多行时尽可能打印尾随逗号
+     bracketSpacing: true, //在对象前后添加空格-eg: { foo: bar }
+     jsxBracketSameLine: true, //多属性html标签的‘>’折行放置
+     arrowParens: 'always', //单参数箭头函数参数周围使用圆括号-eg: (x) => x
+     requirePragma: false, //无需顶部注释即可格式化
+     insertPragma: false, //在已被preitter格式化的文件顶部加上标注
+     proseWrap: 'preserve', //不知道怎么翻译
+     htmlWhitespaceSensitivity: 'ignore', //对HTML全局空白不敏感
+     vueIndentScriptAndStyle: false, //不对vue中的script及style标签缩进
+     endOfLine: 'lf', //结束行形式
+     embeddedLanguageFormatting: 'auto', //对引用代码进行格式化
+   };
+   ```
+
+   
 
    ```
    // 在项目根目录下添加以下文件
@@ -123,7 +148,7 @@
    https://blog.csdn.net/qq_37815596/article/details/109225879
    ```
 
-5.  在 commit 时自动格式化代码
+5. 在 commit 时自动格式化代码
 
    ```
    npm install --save-dev husky lint-staged prettier
@@ -150,7 +175,7 @@
    }
    ```
 
-6.  设置 dev 环境为 https
+6. 设置 dev 环境为 https
 
    ```
    windows cmd
@@ -165,7 +190,7 @@
    }
    ```
 
-7.  使用 scss，并自动在每个文件注入 通用变量文件
+7. 使用 scss，并自动在每个文件注入 通用变量文件
 
    (以下划线开头的文件表示不需要编译成 css 文件)
 
@@ -259,7 +284,7 @@
      import App from '@containers/shared/App'
      ```
 
-10.  自定义 eslint 配置和 stylelint ，commitlint 配置
+10. 自定义 eslint 配置和 stylelint ，commitlint 配置
 
     - 安装依赖
 
@@ -300,7 +325,10 @@
       commitizen init cz-conventional-changelog --save-dev --save-exact
       ```
 
-      
+11.  命名规范
+
+    > 1. css class 命名，小驼峰
+    > 2. 
 
 ## 集成库和插件
 
@@ -318,3 +346,49 @@
 
      
 
+2.  动态生成 class 名称； css modules 方式使用类名，无法配置多个类名的问题，使用 [classnames](https://github.com/JedWatson/classnames)
+
+   ```scss
+   // ------------- 多个类名 ------------
+   // 非模块化写法
+   import './index.scss'
+   className = 'error test abc-cdf'
+   
+   // css modules 方式使用
+   import styles from './index.module.scss'
+   className = { `${styles.error} ${styles.test} ${styles['abc-cdf']}` } 
+   ```
+
+   - classnames
+
+     ```bash
+     npm install classnames @types/classnames -D
+     ```
+
+     使用示例
+
+     ```react
+     import classnames from 'classnames'
+     
+     <div className=classnames({
+         'error': true,
+         'test': false
+       	'abc-cdf': true
+         )>
+     </div>
+     
+     // 与 css modules 配合使用
+     <div  className={classnames({
+           [styles.error]: true,
+           [styles.test]: false
+           [styles['abc-cdf']]: true
+       })}
+      </div>
+       
+     // result
+     <div class='error abc-cdf'></div>
+     ```
+
+     
+
+   - 当入口文件 index.scss 和组件的 class 同名时，居然最终使用的是入口文件的，除非入口文件中不存在此类名？？？

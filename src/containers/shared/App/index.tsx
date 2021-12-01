@@ -1,12 +1,13 @@
-import React, { FC } from 'react'
-import { ConfigProvider, Button } from 'antd'
+import React from 'react'
+import { ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
-import './index.scss'
+import Biochemical from '@containers/views/Biochemical'
+import './index.module.scss'
 
-const App: FC = () => {
+const App: React.FC = () => {
     return (
         <ConfigProvider locale={zhCN}>
-            <Button type="primary">Button</Button>
+            <Biochemical />
         </ConfigProvider>
     )
 }

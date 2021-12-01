@@ -1,4 +1,9 @@
 @mixin size($width, $height: $width) {
-    width: $width;
-    height: $height;
+	width: $width;
+	height: $height;
+}
+
+@mixin height-lh($height, $line-height: $height) {
+	height: $height;
+	line-height: $line-height;
 }
