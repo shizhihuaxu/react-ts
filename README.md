@@ -286,6 +286,12 @@
 
 10. 自定义 eslint 配置和 stylelint ，commitlint 配置
 
+    - eslint 
+
+      去除 package.json 中 eslintConfig 选项的配置
+      
+      可以在 craco.config.js 的 eslint 配置项中配置
+      
     - 安装依赖
 
       ```
@@ -329,6 +335,8 @@
 
     > 1. css class 命名，小驼峰
     > 2. 
+
+12.  npmrc 固定版本
 
 ## 集成库和插件
 

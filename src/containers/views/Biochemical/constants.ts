@@ -20,7 +20,13 @@ export const biochemicalType: IType[] = [
 			{
 				id: '1-2',
 				name: 'HBV+DNA',
-				key: 'hbv',
+				key: 'hbv_dna_1',
+				isSelect: false
+			},
+			{
+				id: '1-3',
+				name: 'test',
+				key: 'test_1',
 				isSelect: false
 			}
 		]
@@ -36,8 +42,15 @@ export const biochemicalType: IType[] = [
 				isSelect: true
 			},
 			{
-				id: '1-2',
+				id: '2-2',
 				name: 'HBV+DNA',
+				key: 'hbv_dna_2',
+				isSelect: false
+			},
+			{
+				id: '2-3',
+				name: 'test',
+				key: 'test_2',
 				isSelect: false
 			}
 		]
@@ -53,15 +66,15 @@ export const biochemicalType: IType[] = [
 				isSelect: true
 			},
 			{
-				id: '1-2',
+				id: '3-2',
 				name: '总蛋白',
-				key: 'total_protein',
+				key: 'total_protein_1',
 				isSelect: false
 			}
 		]
 	},
 	{
-		id: '3',
+		id: '4',
 		name: '血常规',
 		isSelect: false,
 		children: [
@@ -71,9 +84,9 @@ export const biochemicalType: IType[] = [
 				isSelect: true
 			},
 			{
-				id: '1-2',
+				id: '4-2',
 				name: '总蛋白',
-				key: 'total_protein',
+				key: 'total_protein_2',
 				isSelect: false
 			}
 		]
