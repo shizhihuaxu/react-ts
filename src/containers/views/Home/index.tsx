@@ -1,6 +1,7 @@
 import React from 'react'
 import { Layout } from 'antd'
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import NoMatch from '@components/NoMatch'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import styles from './index.module.scss'
@@ -10,9 +11,8 @@ const menu = [
         id: 1,
         path: '/',
         title: 'bio',
-        component: 'Biochemical',
-        exact: true
-    },
+        component: 'Biochemical'
+    }
 ]
 
 function Home() {
@@ -23,24 +23,16 @@ function Home() {
                 <Sidebar />
                 <Layout>
                     <Layout.Content className={styles.appContent}>
-                            <Router>
-                                <Switch>
-                                {menu.map(m => {
-                                        if (!m.path) {
-                                            return null
-                                        }
-                                    return (
-                                        <Route
-                                            key={m.id}
-                                            exact={m.exact}
-                                            path={m.path}
-                                            component={m.component ? asynchronousComponents[m.component] : null}
-                                        />
-                                    })}
-                                })}
-                                <Route component={Error} />
-                                </Switch>
-                            </Router>
+                        <Routes>
+                            {menu.map(m => {
+                                if (!m.path) {
+                                    return null
+                                }
+
+                                return <Route key={m.id} path={m.path} element={m.component ? asynchronousComponents[m.component] : null} />
+                            })}
+                            <Route path='*' element={<NoMatch />} />
+                        </Routes>
                     </Layout.Content>
                 </Layout>
             </Layout>
