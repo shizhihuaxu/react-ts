@@ -400,3 +400,23 @@
      
 
    - 当入口文件 index.scss 和组件的 class 同名时，居然最终使用的是入口文件的，除非入口文件中不存在此类名？？？
+
+3.  路由懒加载（与 react.lazy 、suspense对比）, v6 版本
+
+   ```bash
+   npm install -D @loadable/component @types/loadable__component 
+   npm install -D react-router-dom @types/react-router-dom
+   ```
+
+   使用
+
+   ```js
+   export const lazyLoadComponent = (loader: () => Promise<any>) => loadable(loader, { fallback: <PageLoading /> })
+   
+   const testCom = lazyLoadComponent(() => import(/* webpackChunkName: "test" */ '@containers/views/test'))
+   
+   <Route key={item.id} path={item.path} element={ <testCom />} /> // 注意 element 为组件，不再是组件名称
+   ```
+
+   
+

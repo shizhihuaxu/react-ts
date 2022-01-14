@@ -4,16 +4,8 @@ import { Routes, Route } from 'react-router-dom'
 import NoMatch from '@components/NoMatch'
 import Header from './Header'
 import Sidebar from './Sidebar'
+import menu, { asyncComponents } from './menu'
 import styles from './index.module.scss'
-
-const menu = [
-    {
-        id: 1,
-        path: '/',
-        title: 'bio',
-        component: 'Biochemical'
-    }
-]
 
 function Home() {
     return (
@@ -24,12 +16,12 @@ function Home() {
                 <Layout>
                     <Layout.Content className={styles.appContent}>
                         <Routes>
-                            {menu.map(m => {
-                                if (!m.path) {
-                                    return null
-                                }
+                            {menu.map(item => {
+                                if (!item.path) return null
 
-                                return <Route key={m.id} path={m.path} element={m.component ? asynchronousComponents[m.component] : null} />
+                                const CurComponent = asyncComponents[item.component]
+
+                                return <Route key={item.id} path={item.path} element={<CurComponent />} />
                             })}
                             <Route path='*' element={<NoMatch />} />
                         </Routes>

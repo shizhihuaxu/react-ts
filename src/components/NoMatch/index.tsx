@@ -2,7 +2,7 @@ import React from 'react'
 
 const NoMatch = () => (
     <div>
-        <p>This page does not exist anymore.</p>
+        <p>页面不存在</p>
     </div>
 )
 
