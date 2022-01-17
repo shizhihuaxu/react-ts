@@ -1,10 +1,10 @@
 import React from 'react'
 import { Layout } from 'antd'
 import { Routes, Route } from 'react-router-dom'
+import routes from '@scripts/router'
 import NoMatch from '@components/NoMatch'
 import Header from './Header'
 import Sidebar from './Sidebar'
-import menu, { asyncComponents } from './menu'
 import styles from './index.module.scss'
 
 function Home() {
@@ -15,13 +15,12 @@ function Home() {
                 <Sidebar />
                 <Layout>
                     <Layout.Content className={styles.appContent}>
+                        {/* TODO 考虑嵌套路由的处理 */}
                         <Routes>
-                            {menu.map(item => {
+                            {routes.map(item => {
                                 if (!item.path) return null
 
-                                const CurComponent = asyncComponents[item.component]
-
-                                return <Route key={item.id} path={item.path} element={<CurComponent />} />
+                                return <Route key={item.key} index={item.isIndex} path={item.path} element={<item.element />} />
                             })}
                             <Route path='*' element={<NoMatch />} />
                         </Routes>
