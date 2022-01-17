@@ -413,10 +413,20 @@
    ```js
    export const lazyLoadComponent = (loader: () => Promise<any>) => loadable(loader, { fallback: <PageLoading /> })
    
-   const testCom = lazyLoadComponent(() => import(/* webpackChunkName: "test" */ '@containers/views/test'))
+   const testCom = lazyLoadComponent(() => import('@containers/views/test'))
    
    <Route key={item.id} path={item.path} element={ <testCom />} /> // 注意 element 为组件，不再是组件名称
    ```
 
    
+
+4.  使用离线 `iconfont` 
+
+   - 在 antd 组件的 icon 属性中使用
+
+     ```
+     npm install -D @ant-design/icons
+     ```
+
+
 

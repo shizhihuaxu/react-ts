@@ -20,7 +20,7 @@ export const routes: IRoute[] = [
     // },
     {
         key: 'test',
-        path: '/test:id',
+        path: 'test:id',
         element: lazyLoadComponent(() => import('@containers/views/Test')),
         isIndex: true
     }

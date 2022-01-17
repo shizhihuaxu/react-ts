@@ -6,17 +6,17 @@ export interface IMenu {
     children?: Array<IMenu>
 }
 
-export const menu: IMenu[] = [
-    // {
-    //     icon: 'bl-icon-log',
-    //     path: '/',
-    //     title: 'bio'
-    // },
+export const menus: IMenu[] = [
+    {
+        icon: 'bl-icon-log',
+        path: '/',
+        title: 'bio'
+    },
     {
         icon: 'bl-icon-list',
-        path: '/test:id',
+        path: 'test/1',
         title: 'test'
     }
 ]
 
-export default menu
+export default menus
