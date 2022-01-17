@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 import IconFont from '@components/IconFont'
 import menus, { IMenu } from './menu'
+import styles from './index.module.scss'
 
 const { SubMenu } = Menu
 
@@ -10,15 +11,17 @@ function Sidebar() {
     // 生成 menu 组件
     function getMenus(menus: IMenu[]) {
         return menus.map(item => {
+            const icon = item.icon ? <IconFont type={item.icon} /> : null
+
             if (item.children) {
                 return (
-                    <SubMenu key={item.path} title={item.title} icon={item.icon ? <IconFont type={item.icon} /> : null}>
+                    <SubMenu key={item.path} title={item.title} icon={icon}>
                         {getMenus(item.children)}
                     </SubMenu>
                 )
             }
             return (
-                <Menu.Item key={item.path}>
+                <Menu.Item key={item.path} icon={icon}>
                     <Link to={item.path}>{item.title}</Link>
                 </Menu.Item>
             )
@@ -27,8 +30,7 @@ function Sidebar() {
 
     return (
         <Layout.Sider>
-            <IconFont type='bl-icon-log' />
-            <Menu>{getMenus(menus)}</Menu>
+            <Menu className={styles.menu}>{getMenus(menus)}</Menu>
         </Layout.Sider>
     )
 }

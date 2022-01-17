@@ -8,12 +8,12 @@ export interface IMenu {
 
 export const menus: IMenu[] = [
     {
-        icon: 'bl-icon-log',
+        icon: 'bl-icon-menu-log',
         path: '/bio',
         title: 'bio'
     },
     {
-        icon: 'bl-icon-list',
+        icon: 'bl-icon-menu-list',
         path: '/test/1',
         title: 'test'
     }

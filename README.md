@@ -422,11 +422,53 @@
 
 4.  使用离线 `iconfont` 
 
-   - 在 antd 组件的 icon 属性中使用
+   - 首先将导出的字体图标相关的文件放入 `/assets/iconfont/` 文件夹中
 
+   - 方法一：入口文件中同时引入 js、css，使用 class 
+   
+     ```jsx
+     // src/index.tsx
+     import './assets/iconfonts/iconfont.css'
+     import './assets/iconfonts/iconfont.js'
+     
+     // components
+     <div className='bl-icon-menu-chart'></div>
      ```
-     npm install -D @ant-design/icons
-     ```
-
-
+   
+     
+   
+   - 方法二：在入口文件中引入 css，自定义 antd 图标组件
+   
+   ```
+   npm install -D @ant-design/icons
+   ```
+   
+   ```tsx
+   // 1、src/index.tsx
+   import './assets/iconfonts/iconfont.css'
+   
+   // 2、在 components 文件夹中新建组件 components/IconFont/index.tsx
+   
+   import { createFromIconfontCN } from '@ant-design/icons'
+   
+   const IconFont = createFromIconfontCN({
+     	// 也可在这里省略配置，在入口文件中引入 js
+       scriptUrl: require('@assets/iconfonts/iconfont.js'), 
+     	// 组件的额外通用属性
+     	extraCommonProps: {
+           style: {
+               fontSize: '16px',
+               cursor: 'pointer'
+           }
+       }
+   })
+   
+   export default IconFont
+   
+   
+   // 3、在组件中引入使用
+   import IconFont from '@components/IconFont'
+   
+   <IconFont type='bl-icon-menu-log' />
+   ```
 
