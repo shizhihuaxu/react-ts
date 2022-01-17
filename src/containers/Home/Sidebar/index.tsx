@@ -8,7 +8,7 @@ const { SubMenu } = Menu
 
 function Sidebar() {
     // 生成 menu 组件
-    function getMenus(nemu: IMenu[]) {
+    function getMenus(menus: IMenu[]) {
         return menus.map(item => {
             if (item.children) {
                 return (

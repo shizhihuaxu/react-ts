@@ -3,18 +3,18 @@ export interface IMenu {
     icon?: string
     title: string
     path: string
-    children?: Array<IMenu>
+    children?: IMenu[]
 }
 
 export const menus: IMenu[] = [
     {
         icon: 'bl-icon-log',
-        path: '/',
+        path: '/bio',
         title: 'bio'
     },
     {
         icon: 'bl-icon-list',
-        path: 'test/1',
+        path: '/test/1',
         title: 'test'
     }
 ]

@@ -1,13 +1,27 @@
 import React from 'react'
 import { Layout } from 'antd'
 import { Routes, Route } from 'react-router-dom'
-import routes from '@scripts/router'
+import routes, { IRoute } from '@scripts/router'
 import NoMatch from '@components/NoMatch'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import styles from './index.module.scss'
 
 function Home() {
+    // 生成 Route 组件
+    function getRoutes(routes: IRoute[]) {
+        return routes.map(item => {
+            if (item.children) {
+                return (
+                    <Route key={item.key} index={item.isIndex} path={item.path} element={<item.element />}>
+                        {getRoutes(item.children)}
+                    </Route>
+                )
+            }
+            return <Route key={item.key} index={item.isIndex} path={item.path} element={<item.element />} />
+        })
+    }
+
     return (
         <Layout className={styles.app}>
             <Header />
@@ -15,13 +29,8 @@ function Home() {
                 <Sidebar />
                 <Layout>
                     <Layout.Content className={styles.appContent}>
-                        {/* TODO 考虑嵌套路由的处理 */}
                         <Routes>
-                            {routes.map(item => {
-                                if (!item.path) return null
-
-                                return <Route key={item.key} index={item.isIndex} path={item.path} element={<item.element />} />
-                            })}
+                            {getRoutes(routes)}
                             <Route path='*' element={<NoMatch />} />
                         </Routes>
                     </Layout.Content>
