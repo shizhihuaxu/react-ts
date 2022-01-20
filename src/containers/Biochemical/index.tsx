@@ -14,7 +14,7 @@ const Biochemical: React.FC = () => {
 
             const obj: { [k: string]: any } = {
                 title: name,
-                children: []
+                children: [],
             }
 
             if (children) {
@@ -23,7 +23,7 @@ const Biochemical: React.FC = () => {
                         obj.children.push({
                             title: type.name,
                             key: type.key,
-                            dataIndex: type.key
+                            dataIndex: type.key,
                         })
                 })
             }
@@ -37,14 +37,14 @@ const Biochemical: React.FC = () => {
             dataIndex: 'action',
             key: 'action',
             fixed: 'right',
-            render: () => <a>查看</a>
+            render: () => <a>查看</a>,
         })
         // 时间列
         columns.unshift({
             title: '时间',
             dataIndex: 'time',
             key: 'time',
-            fixed: 'left'
+            fixed: 'left',
         })
     }
 
@@ -61,8 +61,8 @@ const Biochemical: React.FC = () => {
             test_2: 99,
             total_protein_1: 3,
             total_protein_2: 44,
-            time: '2021-12-12: 10:11:22'
-        }
+            time: '2021-12-12: 10:11:22',
+        },
     ])
 
     function changeTableColumns(type: IType) {
@@ -79,7 +79,9 @@ const Biochemical: React.FC = () => {
             <div className={styles.list}>
                 {biochemicalList.map(parent => {
                     return (
-                        <div key={parent.id} className={styles.category}>
+                        <div
+                            key={parent.id}
+                            className={styles.category}>
                             <span className={styles.categoryName}>{parent.name}</span>
                             <span className={styles.type}>
                                 {parent.children &&
@@ -89,7 +91,7 @@ const Biochemical: React.FC = () => {
                                                 key={child.id}
                                                 className={classnames({
                                                     [styles.typeName]: true,
-                                                    [styles.active]: child.isSelect
+                                                    [styles.active]: child.isSelect,
                                                 })}
                                                 onClick={() => changeTableColumns(child)}
                                             >
@@ -103,7 +105,12 @@ const Biochemical: React.FC = () => {
                 })}
             </div>
             {/* 列表 */}
-            <Table className={styles.table} dataSource={tableList} columns={tableColumns} scroll={{ x: 1500, y: 300 }} bordered={true} />
+            <Table
+                className={styles.table}
+                dataSource={tableList}
+                columns={tableColumns}
+                scroll={{ x: 1500, y: 300 }}
+                bordered={true} />
         </div>
     )
 }

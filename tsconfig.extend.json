@@ -2,12 +2,24 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "@/*": ["*"],
-            "@containers/*": ["containers/*"],
-            "@components/*": ["components/*"],
-            "@scripts/*": ["scripts/*"],
-            "@services/*": ["services/*"],
-            "@assets/*": ["assets/*"]
+            "@/*": [
+                "*"
+            ],
+            "@containers/*": [
+                "containers/*"
+            ],
+            "@components/*": [
+                "components/*"
+            ],
+            "@scripts/*": [
+                "scripts/*"
+            ],
+            "@services/*": [
+                "services/*"
+            ],
+            "@assets/*": [
+                "assets/*"
+            ]
         }
     }
 }

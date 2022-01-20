@@ -14,7 +14,7 @@ module.exports = {
             '@containers': resolve('src/containers'),
             '@services': resolve('src/components'),
             '@scripts': resolve('src/scripts'),
-            '@assets': resolve('src/assets')
+            '@assets': resolve('src/assets'),
         },
         // 配置代理
         devServer: {
@@ -25,29 +25,29 @@ module.exports = {
                     changeOrigin: true,
                     secure: false,
                     header: {
-                        Referer: 'https://192.168.166.50'
-                    }
+                        Referer: 'https://192.168.166.50',
+                    },
                 },
                 // 图片跨域 pdf查看
                 '/mnt/bolean/media/': {
                     target: 'https://192.168.166.50', // 目标代理接口地址
                     changeOrigin: false,
-                    secure: false
-                }
-            }
-        }
+                    secure: false,
+                },
+            },
+        },
     },
     plugins: [
         {
             plugin: sassResourcesLoader,
             options: {
-                resources: [resolve('src/styles/_variables.scss'), resolve('src/styles/_mixins.scss')]
-            }
-        }
+                resources: [resolve('src/styles/_variables.scss'), resolve('src/styles/_mixins.scss')],
+            },
+        },
     ],
     eslint: {
         enable: true,
         mode: 'extends',
-        configure: () => customESLintConfig
-    }
+        configure: () => customESLintConfig,
+    },
 }

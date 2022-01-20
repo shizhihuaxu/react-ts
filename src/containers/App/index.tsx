@@ -13,12 +13,20 @@ function App() {
         return routes.map(item => {
             if (item.children) {
                 return (
-                    <Route key={item.path} index={item.isIndex} path={item.path} element={<item.element />}>
+                    <Route
+                        key={item.path}
+                        index={item.isIndex}
+                        path={item.path}
+                        element={<item.element />}>
                         {getRoutes(item.children)}
                     </Route>
                 )
             }
-            return <Route key={item.path} index={item.isIndex} path={item.path} element={<item.element />} />
+            return <Route
+                key={item.path}
+                index={item.isIndex}
+                path={item.path}
+                element={<item.element />} />
         })
     }
 

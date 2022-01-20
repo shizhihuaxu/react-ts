@@ -15,13 +15,18 @@ function Sidebar() {
 
             if (item.children) {
                 return (
-                    <SubMenu key={item.path} title={item.title} icon={icon}>
+                    <SubMenu
+                        key={item.path}
+                        title={item.title}
+                        icon={icon}>
                         {getMenus(item.children)}
                     </SubMenu>
                 )
             }
             return (
-                <Menu.Item key={item.path} icon={icon}>
+                <Menu.Item
+                    key={item.path}
+                    icon={icon}>
                     <Link to={item.path}>{item.title}</Link>
                 </Menu.Item>
             )

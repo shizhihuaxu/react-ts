@@ -74,107 +74,41 @@
    			react-app-env.d.ts
    			setupTests.ts
    	.gitignore
-   	.prettierrc
-   	.prettierignore
    	package.json
    	package-lock.json
    	README.md
    	tsconfig.json
    		
    ```
-
+   
    命名规则
 
    - 组件文件夹名称均使用大驼峰式命名，组件文件夹由组件内容 `index.tsx` 和组件样式 `index.scss` 两部分组成；
    - 
-
-4. 配置代码格式化插件 prettier，首先需要在扩展里安装此插件
-
-   ```
-   module.exports = {
-     printWidth: 80, //单行长度
-     tabWidth: 2, //缩进长度
-     useTabs: false, //使用空格代替tab缩进
-     semi: true, //句末使用分号
-     singleQuote: true, //使用单引号
-     quoteProps: 'as-needed', //仅在必需时为对象的key添加引号
-     jsxSingleQuote: true, // jsx中使用单引号
-     trailingComma: 'all', //多行时尽可能打印尾随逗号
-     bracketSpacing: true, //在对象前后添加空格-eg: { foo: bar }
-     jsxBracketSameLine: true, //多属性html标签的‘>’折行放置
-     arrowParens: 'always', //单参数箭头函数参数周围使用圆括号-eg: (x) => x
-     requirePragma: false, //无需顶部注释即可格式化
-     insertPragma: false, //在已被preitter格式化的文件顶部加上标注
-     proseWrap: 'preserve', //不知道怎么翻译
-     htmlWhitespaceSensitivity: 'ignore', //对HTML全局空白不敏感
-     vueIndentScriptAndStyle: false, //不对vue中的script及style标签缩进
-     endOfLine: 'lf', //结束行形式
-     embeddedLanguageFormatting: 'auto', //对引用代码进行格式化
-   };
-   ```
-
    
-
-   ```
-   // 在项目根目录下添加以下文件
-   .prettierrc
-       {
-           "tabWidth": 4,
-           "singleQuote": true,
-           "trailingComma": "none",
-           "arrowParens": "avoid",
-           "semi": false,
-           "printWidth": 120,
-           "endOfLine": "auto"
-       }
-   
-   .prettierignore
-   	/node_modules
-   	/public
-   	/src/**/*.scss.d.ts
-   	.vscode
-   	
-   // 为保证 react 的项目配置不影响全局的 vscode 配置，在项目根目录下添加 vscode 配置文件
-   .vscode
-   		settings.json
-   				{
-               "editor.defaultFormatter": "esbenp.prettier-vscode"
-           }
-   
-   // 并保证全局的 vscode 配置中有保存文件自动格式化的配置
-   "editor.formatOnSave": true
-   
-   // 如果保存格式化失败了可以查看此文章
-   https://blog.csdn.net/qq_37815596/article/details/109225879
-   ```
-
 5. 在 commit 时自动格式化代码
 
    ```
-   npm install --save-dev husky lint-staged prettier
+   npm install --save-dev husky
    ```
 
    Husky:  npm 脚本中使用 githook 
 
    Lint-staged:  对添加进暂存区的文件运行脚本文件
 
-   Prettier: 代码格式化工具
-
    在 package.json 文件中添加以下代码
 
    ```json
+   "scripts": {
+       "lint": "eslint . --fix"
+   },
    "husky": {
        "hooks": {
-           "pre-commit": "lint-staged"
+           "pre-commit": "npm run lint"
        }
    },
-   "lint-staged": {
-       "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-           "prettier --write"
-       ]
-   }
    ```
-
+   
 6. 设置 dev 环境为 https
 
    ```

@@ -5,9 +5,9 @@ const IconFont = createFromIconfontCN({
     extraCommonProps: {
         style: {
             fontSize: '16px',
-            cursor: 'pointer'
-        }
-    }
+            cursor: 'pointer',
+        },
+    },
 })
 
 export default IconFont

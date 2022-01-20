@@ -24,36 +24,36 @@ export const routes: IRoute[] = [
         element: lazyLoadComponent(() => import('@containers/Login')),
         meta: {
             noAuth: true,
-            isFullPage: true
-        }
+            isFullPage: true,
+        },
     },
     {
         path: '/login',
         element: lazyLoadComponent(() => import('@containers/Login')),
         meta: {
             noAuth: true,
-            isFullPage: true
-        }
+            isFullPage: true,
+        },
     },
     {
         path: '/bio',
         element: lazyLoadComponent(() => import('@containers/Biochemical')),
         meta: {
-            isFullPage: true
-        }
+            isFullPage: true,
+        },
     },
     {
         path: '/test/:id',
-        element: lazyLoadComponent(() => import('@containers/Test'))
+        element: lazyLoadComponent(() => import('@containers/Test')),
     },
     {
         path: '*',
         element: lazyLoadComponent(() => import('@components/NoMatch')),
         meta: {
             noAuth: true,
-            isFullPage: true
-        }
-    }
+            isFullPage: true,
+        },
+    },
 ]
 
 export default routes

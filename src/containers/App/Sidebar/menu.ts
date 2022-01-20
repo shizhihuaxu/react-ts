@@ -10,13 +10,13 @@ export const menus: IMenu[] = [
     {
         icon: 'bl-icon-menu-log',
         path: '/bio',
-        title: 'bio'
+        title: 'bio',
     },
     {
         icon: 'bl-icon-menu-list',
         path: '/test/1',
-        title: 'test'
-    }
+        title: 'test',
+    },
 ]
 
 export default menus
