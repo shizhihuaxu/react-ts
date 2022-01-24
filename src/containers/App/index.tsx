@@ -2,22 +2,53 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ConfigProvider, Layout } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
+import { AuthProvider, AuthConsumer } from '@/store/AuthStore'
 import routes, { IRoute } from './route'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import styles from './index.module.scss'
 
+// 页面布局通用组件
+function PageLayout({ children }: { children: React.ReactNode }) {
+    return <Layout className={styles.app}>
+        <Header />
+        <Layout className={styles.appBody}>
+            <Sidebar />
+            <Layout>
+                <Layout.Content className={styles.appContent}>
+                    {children}
+                </Layout.Content>
+            </Layout>
+        </Layout>
+    </Layout>
+}
+
 function App() {
+    // NOTE 这里可以写为箭头函数的形式吗，如果不行为什么
     // 生成 Route 组件
     function getRoutes(routes: IRoute[]) {
         return routes.map(item => {
+            // 处理是否为全屏
+            const layoutElem = !item.meta?.isFullPage ?
+                <PageLayout>
+                    <item.element />
+                </PageLayout>
+                : <item.element />
+
+            // 处理是否需要路由鉴权
+            const element = !item.meta?.noAuth ?
+                <AuthConsumer>
+                    {layoutElem}
+                </AuthConsumer>
+                : layoutElem
+
             if (item.children) {
                 return (
                     <Route
                         key={item.path}
                         index={item.isIndex}
                         path={item.path}
-                        element={<item.element />}>
+                        element={element}>
                         {getRoutes(item.children)}
                     </Route>
                 )
@@ -26,23 +57,15 @@ function App() {
                 key={item.path}
                 index={item.isIndex}
                 path={item.path}
-                element={<item.element />} />
+                element={element} />
         })
     }
 
     return (
         <ConfigProvider locale={zhCN}>
-            <Layout className={styles.app}>
-                <Header />
-                <Layout className={styles.appBody}>
-                    <Sidebar />
-                    <Layout>
-                        <Layout.Content className={styles.appContent}>
-                            <Routes>{getRoutes(routes)}</Routes>
-                        </Layout.Content>
-                    </Layout>
-                </Layout>
-            </Layout>
+            <AuthProvider>
+                <Routes>{getRoutes(routes)}</Routes>
+            </AuthProvider>
         </ConfigProvider>
     )
 }
