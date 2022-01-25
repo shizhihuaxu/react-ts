@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate, useLocation } from 'react-router-dom'
 
 interface AuthContextType {
     user: any
@@ -29,16 +29,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-export function AuthConsumer({ children }: { children: React.ReactNode }) {
-    const navigate = useNavigate()
-
-    return <AuthContext.Consumer>
-        {value => {
-            if (!value.user) {
-                navigate('/login')
-            }
-
-            return children
-        }}
-    </AuthContext.Consumer>
+export default function useAuthContext() {
+    return React.useContext(AuthContext)
 }

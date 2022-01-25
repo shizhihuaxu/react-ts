@@ -1,15 +1,24 @@
 import React from 'react'
 import { Layout, Button } from 'antd'
+import { useNavigate } from 'react-router-dom'
+import useAuthContext from '@/store/AuthStore'
+import styles from './index.module.scss'
 
 function Header() {
+    const auth = useAuthContext()
+    const navigate = useNavigate()
+
     function logout() {
-        console.log(1)
+        auth.logout(() => {
+            navigate('/login')
+        })
     }
 
     return (
-        <Layout.Header>
-            <div>header</div>
-            <Button onClick={logout}>logout</Button>
+        <Layout.Header className={styles.header}>
+            <div>
+                <Button onClick={logout}>logout</Button>
+            </div>
         </Layout.Header>
     )
 }

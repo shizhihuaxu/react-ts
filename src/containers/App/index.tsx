@@ -1,9 +1,9 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { ConfigProvider, Layout } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
-import { AuthProvider, AuthConsumer } from '@/store/AuthStore'
-import routes, { IRoute } from './route'
+import useAuthContext, { AuthProvider } from '@/store/AuthStore'
+import routes, { IRoute } from '@/router'
 import Header from './Header'
 import Sidebar from './Sidebar'
 import styles from './index.module.scss'
@@ -23,6 +23,21 @@ function PageLayout({ children }: { children: React.ReactNode }) {
     </Layout>
 }
 
+// 需要鉴权的页面
+function RequireAuth({ children }: { children: JSX.Element }) {
+    const auth = useAuthContext()
+    const location = useLocation()
+
+    if (!auth.user) {
+        return <Navigate
+            to="/login"
+            state={{ from: location }}
+            replace />
+    }
+
+    return children
+}
+
 function App() {
     // NOTE 这里可以写为箭头函数的形式吗，如果不行为什么
     // 生成 Route 组件
@@ -37,9 +52,9 @@ function App() {
 
             // 处理是否需要路由鉴权
             const element = !item.meta?.noAuth ?
-                <AuthConsumer>
+                <RequireAuth>
                     {layoutElem}
-                </AuthConsumer>
+                </RequireAuth>
                 : layoutElem
 
             if (item.children) {

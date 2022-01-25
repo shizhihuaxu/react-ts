@@ -38,6 +38,7 @@ module.exports = {
         '@typescript-eslint/explicit-member-accessibility': 'off',
         '@typescript-eslint/interface-name-prefix': 'off',
         '@typescript-eslint/no-empty-interface': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
         'react/prop-types': 'off',
         'react/display-name': 'off',
         'react/jsx-first-prop-new-line': ['warn', 'multiline'], // 第一个属性单独一行
