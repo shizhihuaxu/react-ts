@@ -7,7 +7,7 @@ function Login() {
     const auth = useAuthContext()
     const navigate = useNavigate()
 
-    function login() {
+    async function login() {
         // 登录成功后跳转到 test 页面
         auth.login('test', () => {
             navigate('/test/1')
