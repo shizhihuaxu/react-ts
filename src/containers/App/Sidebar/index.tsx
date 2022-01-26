@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 import IconFont from '@components/IconFont'
 import menus, { IMenu } from './menu'
@@ -27,7 +27,7 @@ function Sidebar() {
                 <Menu.Item
                     key={item.path}
                     icon={icon}>
-                    <Link to={item.path}>{item.title}</Link>
+                    <NavLink to={item.path}>{item.title}</NavLink>
                 </Menu.Item>
             )
         })

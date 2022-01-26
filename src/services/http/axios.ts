@@ -38,12 +38,8 @@ const ERROR_MSG: { [key: string]: string } = {
  * @param [String] url 请求 url
  * @param [Object] data 请求参数
  */
-const $axios = ({ url, method, data }: AxiosRequestConfig) => {
+const $axios = (options: AxiosRequestConfig) => {
     const instance = axios.create(DEFAULT_CONFIG)
-    const options: AxiosRequestConfig = {
-        url: url,
-        method: method,
-    }
 
     // 根据处理请求方法处理数据
     instance.interceptors.request.use(
@@ -57,9 +53,9 @@ const $axios = ({ url, method, data }: AxiosRequestConfig) => {
             }
 
             if (method === 'get') {
-                config.params = data
+                config.params = options.data
             } else {
-                config.data = data
+                config.data = options.data
             }
 
             return config
