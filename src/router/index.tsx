@@ -18,7 +18,7 @@ export interface IRoute {
     children?: IRoute[] // 子路由
 }
 
-export const routes: IRoute[] = [
+const routes: IRoute[] = [
     {
         path: '/',
         element: lazyLoadComponent(() => import('@containers/Login')),

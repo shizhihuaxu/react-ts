@@ -8,7 +8,7 @@ import API from '@services/http/api-constants'
  * @param { object } data 用户名与密码
  * @return { promise } 响应结果
  */
-const login = (data: { user: string, password: string }) => {
+export const login = (data: { username: string, password: string, login_type: number }) => {
     return $axios({
         url: API.LOGIN,
         method: 'POST',
@@ -21,14 +21,9 @@ const login = (data: { user: string, password: string }) => {
  * @desc 用户登出 [GET]
  * @return { promise } 响应结果
  */
-const logout = () => {
+export const logout = () => {
     return $axios({
         url: API.LOGOUT,
         method: 'GET',
     })
-}
-
-export default {
-    login,
-    logout,
 }

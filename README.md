@@ -181,7 +181,7 @@
              '@': resolve('src'),
              '@components': resolve('src/components'),
              '@containers': resolve('src/containers'),
-             '@services': resolve('src/components'),
+             '@services': resolve('src/services'),
              '@scripts': resolve('src/scripts'),
              '@assets': resolve('src/assets')
          }
@@ -406,3 +406,10 @@
    <IconFont type='bl-icon-menu-log' />
    ```
 
+5. 使用 axios ，[类型声明参照](https://github.com/axios/axios/blob/master/test/typescript/axios.ts)
+
+   ```
+   
+   ```
+
+   

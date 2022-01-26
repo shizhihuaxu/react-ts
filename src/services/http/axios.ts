@@ -1,10 +1,7 @@
 import qs from 'qs'
 import axios, { AxiosRequestConfig } from 'axios'
-import { useNavigate } from 'react-router-dom'
 import { message } from 'antd'
 import { encryptToken } from '@scripts/encryption'
-
-const navigate = useNavigate()
 
 // axios 默认配置
 const DEFAULT_CONFIG: AxiosRequestConfig = {
@@ -60,9 +57,9 @@ const $axios = ({ url, method, data }: AxiosRequestConfig) => {
             }
 
             if (method === 'get') {
-                options.params = data
+                config.params = data
             } else {
-                options.data = data
+                config.data = data
             }
 
             return config
@@ -81,7 +78,7 @@ const $axios = ({ url, method, data }: AxiosRequestConfig) => {
             if (AUTH_CODE.includes(status)) {
                 message.destroy()
                 message.error(ERROR_MSG[status])
-                navigate('/login')
+                window.location.href = '/'
 
                 return
             }
