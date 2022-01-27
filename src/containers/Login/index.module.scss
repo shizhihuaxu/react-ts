@@ -1,6 +1,10 @@
-.header {
+.pageLogin {
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: $color-white-100;
+}
+
+.loginForm {
+    width: 100%;
 }

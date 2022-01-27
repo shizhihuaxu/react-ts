@@ -1,6 +1,7 @@
 import React from 'react'
-import { Layout, Button } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { Layout, Menu, Dropdown } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
+import { Link, useNavigate } from 'react-router-dom'
 import useAuthContext from '@/store/AuthStore'
 import styles from './index.module.scss'
 
@@ -14,11 +15,26 @@ function Header() {
         })
     }
 
+    const menu = (
+        <Menu>
+            <Menu.Item key='info'>
+                <Link to='/userInfo'>账号设置</Link>
+            </Menu.Item>
+            <Menu.Item key='logout'>
+                <div onClick={logout}>退出</div>
+            </Menu.Item>
+        </Menu>
+    )
+
     return (
         <Layout.Header className={styles.header}>
-            <div>
-                <Button onClick={logout}>logout</Button>
-            </div>
+            <img
+                src={require('@assets/common/logo.png').default}
+                width={97}
+                height={26} />
+            <Dropdown overlay={menu}>
+                <UserOutlined />
+            </Dropdown>
         </Layout.Header>
     )
 }
